@@ -26,12 +26,15 @@
 
 ;;; Code:
 
+(require 'newcomment)                   ; for emacs < 24.3
+
 (defun sloc-beginning-of-code ()
   "Move point to the beginning of code block after point."
   (forward-comment (point-max)))
 
 (defun sloc-end-of-code (&optional bound)
   "Move point to the end of current code block."
+  (comment-normalize-vars)
   (let ((bound (or bound (point-max))))
     (goto-char (or (comment-search-forward bound t) bound))))
 
