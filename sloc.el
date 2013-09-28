@@ -34,7 +34,7 @@
 
 (defun sloc-end-of-code (&optional bound)
   "Move point to the end of current code block."
-  (comment-normalize-vars)
+  (comment-normalize-vars t)
   (let ((bound (or bound (point-max))))
     (goto-char (or (comment-search-forward bound t) bound))))
 
